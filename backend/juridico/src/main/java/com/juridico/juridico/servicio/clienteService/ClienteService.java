@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.juridico.juridico.modelo.Cliente;
 import com.juridico.juridico.repositorio.ClienteRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ClienteService implements ICliente{
 
@@ -26,8 +28,8 @@ public class ClienteService implements ICliente{
     }
 
     @Override
-    public Optional<Cliente> buscarClientePorDni(Integer dni) {
-        return clienteRepositorio.buscarClientePorDni(dni);
+    public Cliente buscarClientePorDni(Integer dni) {
+        return clienteRepositorio.findByDni(dni);
     }
 
     @Override
@@ -36,13 +38,14 @@ public class ClienteService implements ICliente{
     }
 
     @Override
-    public void eliminarClientePorDni(Integer dniCliente) {
-        clienteRepositorio.buscarClientePorDni(dniCliente);
+    @Transactional
+    public void eliminarClientePorDni(Integer dni) {
+        clienteRepositorio.deleteByDni(dni);
     }
 
     @Override
     public void actualizarClientePorDni(Integer dniCliente) {
-        Optional<Cliente> cliente = clienteRepositorio.buscarClientePorDni(dniCliente);
+        Optional<Cliente> cliente = Optional.ofNullable(clienteRepositorio.findByDni(dniCliente));
 
 
     }

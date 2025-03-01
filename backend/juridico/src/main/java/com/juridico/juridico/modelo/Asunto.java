@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.Date;
+import java.util.Set;
 
 
 @Data
@@ -29,8 +30,6 @@ public class Asunto {
     @Column(name = "estado_asunto")
     private EstadoAsunto estado;
 
-    @ManyToOne
-    @JoinColumn(name = "dni_cliente", nullable = false)
-    private Cliente cliente;
-
+    @ManyToMany(mappedBy = "asuntos")
+    private Set<Procurador> procuradores;
 }

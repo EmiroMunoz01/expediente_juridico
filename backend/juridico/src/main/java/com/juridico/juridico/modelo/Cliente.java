@@ -1,13 +1,17 @@
 package com.juridico.juridico.modelo;
 
 import java.time.LocalDate;
-
-import org.hibernate.type.descriptor.java.LocalDateJavaType;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,9 +25,11 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 
     @Id
-    @Column(name = "dni")
+    
+    @Column(name = "dni", unique = true)
     private Integer dni;
 
+    @NotNull
     @Column(name = "nombre")
     private String nombre;
 
@@ -31,5 +37,10 @@ public class Cliente {
     private String direccion;
 
     @Column(name = "fecha_creacion")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
+
+    @NotNull
+    @Column(name = "telefono", unique = true)
+    private String telefono;
+
 }

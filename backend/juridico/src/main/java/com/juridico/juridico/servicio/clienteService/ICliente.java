@@ -10,12 +10,12 @@ public interface ICliente {
 
     public List<Cliente> listarClientes();
 
-    public Optional<Cliente> buscarClientePorDni(Integer dni);
+    public Cliente buscarClientePorDni(Integer dniCliente);
 
     public Cliente crearCliente(Cliente cliente);
 
-    public void eliminarClientePorDni(Integer idCliente);
+    public void eliminarClientePorDni(Integer dniCliente);
 
-    public void actualizarClientePorDni(Integer idCliente);
+    public void actualizarClientePorDni(Integer dniCliente);
 
 }

@@ -1,5 +1,7 @@
 package com.juridico.juridico.modelo;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +21,8 @@ public class Procurador {
 
     private String nombre;
     private String telefono;
+
+    @ManyToMany
+    @JoinTable(name = "procurador_asunto", joinColumns = @JoinColumn(name = "procurador_id"), inverseJoinColumns = @JoinColumn(name = "asunto_id"))
+    private Set<Asunto> asuntos;
 }
