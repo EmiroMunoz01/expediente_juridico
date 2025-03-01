@@ -1,5 +1,8 @@
 package com.juridico.juridico.modelo;
 
+import java.time.LocalDate;
+
+import org.hibernate.type.descriptor.java.LocalDateJavaType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,4 +29,7 @@ public class Cliente {
 
     @Column(name = "direccion")
     private String direccion;
+
+    @Column(name = "fecha_creacion")
+    private LocalDate fechaCreacion;
 }

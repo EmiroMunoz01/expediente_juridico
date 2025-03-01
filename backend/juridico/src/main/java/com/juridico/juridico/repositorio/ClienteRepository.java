@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.juridico.juridico.modelo.Cliente;
 
-public interface ClienteRepositorio extends CrudRepository<Cliente, Long> {
+public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 
     Optional<Cliente> buscarClientePorDni(Integer dni);
 
