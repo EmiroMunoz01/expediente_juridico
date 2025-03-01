@@ -57,7 +57,8 @@ public class ClienteController {
                 return ResponseEntity.ok(cliente);
             }
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
         }
     }
 
@@ -72,20 +73,19 @@ public class ClienteController {
     public ResponseEntity<?> actualizarCliente(@PathVariable Integer dniInteger,
             @RequestBody Cliente clienteActualizado) {
 
-        try {
-            Cliente clienteExistente = clienteService.buscarClientePorDni(dniInteger);
+        Cliente clienteBase = clienteService.actualizarCliente(dniInteger,
+                clienteActualizado);
 
-            if (clienteExistente != null) {
-                clienteExistente.setNombre(clienteActualizado.getNombre());
-                clienteExistente.setDireccion(clienteActualizado.getDireccion());
-                clienteExistente.setTelefono(clienteActualizado.getTelefono());
-                return ResponseEntity.ok(clienteExistente);
+        try {
+            if (clienteBase != null) {
+                return ResponseEntity.ok(clienteActualizado);
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado.");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe, primero debes crearlo.");
             }
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error al momento de realizar la peticion.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
         }
 
     }

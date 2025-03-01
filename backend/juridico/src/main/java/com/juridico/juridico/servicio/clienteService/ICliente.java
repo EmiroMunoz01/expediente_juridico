@@ -16,6 +16,7 @@ public interface ICliente {
 
     public void eliminarClientePorDni(Integer dniCliente);
 
-    public void actualizarClientePorDni(Integer dniCliente);
+    public Cliente actualizarCliente(Integer dniCliente, Cliente cliente);
+
 
 }
