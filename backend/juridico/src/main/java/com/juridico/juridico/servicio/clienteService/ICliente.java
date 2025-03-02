@@ -2,7 +2,7 @@ package com.juridico.juridico.servicio.clienteService;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 import com.juridico.juridico.modelo.Cliente;
 
@@ -16,7 +16,7 @@ public interface ICliente {
 
     public void eliminarClientePorDni(Integer dniCliente);
 
-    public Cliente actualizarCliente(Integer dniCliente, Cliente cliente);
+    public Cliente actualizarCliente(Cliente cliente);
 
 
 }

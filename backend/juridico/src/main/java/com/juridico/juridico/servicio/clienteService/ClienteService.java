@@ -33,21 +33,8 @@ public class ClienteService implements ICliente {
     }
 
     @Override
-    public Cliente actualizarCliente(Integer dniCliente, Cliente cliente) {
-
-        Cliente clienteBD = clienteRepositorio.findByDni(dniCliente);
-
-        if (clienteBD != null) {
-            
-            clienteBD.setDni(cliente.getDni());
-            clienteBD.setFechaCreacion(cliente.getFechaCreacion());
-            clienteBD.setDireccion(cliente.getDireccion());
-            clienteBD.setTelefono(cliente.getTelefono());
-            return clienteRepositorio.save(clienteBD);
-
-        } else {
-            return null;
-        }
+    public Cliente actualizarCliente(Cliente cliente) {
+        return clienteRepositorio.save(cliente);
     }
 
     @Override

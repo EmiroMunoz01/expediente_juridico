@@ -73,12 +73,18 @@ public class ClienteController {
     public ResponseEntity<?> actualizarCliente(@PathVariable Integer dniInteger,
             @RequestBody Cliente clienteActualizado) {
 
-        Cliente clienteBase = clienteService.actualizarCliente(dniInteger,
-                clienteActualizado);
+        Cliente clienteBase = clienteService.buscarClientePorDni(dniInteger);
 
         try {
             if (clienteBase != null) {
-                return ResponseEntity.ok(clienteActualizado);
+
+                clienteBase.setNombre(clienteActualizado.getNombre());
+                clienteBase.setDireccion(clienteActualizado.getDireccion());
+                clienteBase.setDni(clienteActualizado.getDni());
+                clienteBase.setTelefono(clienteActualizado.getTelefono());
+                
+                return ResponseEntity.ok(clienteBase);
+
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe, primero debes crearlo.");
             }
