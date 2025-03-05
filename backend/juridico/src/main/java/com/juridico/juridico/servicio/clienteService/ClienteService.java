@@ -1,7 +1,6 @@
 package com.juridico.juridico.servicio.clienteService;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +27,18 @@ public class ClienteService implements ICliente {
     }
 
     @Override
+    public Cliente buscarClientePorId(Long id) {
+        return clienteRepositorio.findById(id).orElse(null);
+    }
+
+    @Override
     public Cliente crearCliente(Cliente cliente) {
         return clienteRepositorio.save(cliente);
     }
 
     @Override
     public Cliente actualizarCliente(Cliente cliente) {
+        
         return clienteRepositorio.save(cliente);
     }
 
@@ -43,4 +48,11 @@ public class ClienteService implements ICliente {
         clienteRepositorio.deleteByDni(dni);
     }
 
+	@Override
+	public void eliminarClientePorId(Long idCliente) {
+		clienteRepositorio.deleteById(idCliente);
+	}
+
+
+    
 }

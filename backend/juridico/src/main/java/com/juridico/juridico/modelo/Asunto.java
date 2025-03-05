@@ -30,6 +30,10 @@ public class Asunto {
     @Column(name = "estado_asunto")
     private EstadoAsunto estado;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_dni", nullable = false)
+    private Cliente cliente;
+
     @ManyToMany(mappedBy = "asuntos")
     private Set<Procurador> procuradores;
 }

@@ -21,6 +21,12 @@ export class ClienteService {
     );
   }
 
+  obtenerClientePorId(id: number) {
+    return this.http.get<Cliente>(
+      `http://localhost:8080/juridico-app/clientes/buscar-por-dni/${id}`
+    );
+  }
+
   crearCliente(cliente: Cliente) {
     return this.http.post<Cliente>(
       `http://localhost:8080/juridico-app/clientes/crear-cliente`,
@@ -29,6 +35,7 @@ export class ClienteService {
   }
 
   actualizarCliente(dni: number, cliente: Cliente) {
+    console.log("llamando al metodo actualizar");
     return this.http.put<Cliente>(
       `http://localhost:8080/juridico-app/clientes/actualizar-cliente/${dni}`,
       cliente

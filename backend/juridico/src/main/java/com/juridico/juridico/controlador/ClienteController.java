@@ -36,6 +36,14 @@ public class ClienteController {
         return clienteService.listarClientes();
     }
 
+    // http://localhost:8080/juridico-app/clientes/buscar-por-dni
+
+    // metodo para filtrar un cliente por dni
+    @GetMapping("/clientes/buscar-por-id/{id}")
+    public Cliente buscarClientePorId(@PathVariable Long id) {
+        return clienteService.buscarClientePorId(id);
+    }
+
     // metodo para filtrar un cliente por dni
     @GetMapping("/clientes/buscar-por-dni/{dniCliente}")
     public Cliente buscarClientePorDni(@PathVariable Integer dniCliente) {
@@ -64,28 +72,34 @@ public class ClienteController {
     }
 
     // metodo para eliminar un cliente por dni
-    @DeleteMapping("/clientes/eliminar-cliente/{dni}")
-    public void eliminarCliente(@PathVariable Integer dni) {
+    @DeleteMapping("/clientes/eliminar-cliente-por-dni/{dni}")
+    public void eliminarClientePorDNI(@PathVariable Integer dni) {
         clienteService.eliminarClientePorDni(dni);
     }
 
+    @DeleteMapping("/clientes/eliminar-cliente-por-id/{id}")
+    public void eliminarClientePorID(@PathVariable Long id) {
+        clienteService.eliminarClientePorId(id);
+    }
+
     // metodo para actualizar un cliente por dni
-    @PutMapping("/clientes/actualizar-cliente/{dniInteger}")
-    public ResponseEntity<?> actualizarCliente(@PathVariable Integer dniInteger,
+    @PutMapping("/clientes/actualizar-cliente/{dni}")
+    public ResponseEntity<?> actualizarCliente(@PathVariable Integer dni,
             @RequestBody Cliente clienteActualizado) {
 
-        Cliente clienteBase = clienteService.buscarClientePorDni(dniInteger);
+        Cliente clienteBase = clienteService.buscarClientePorDni(dni);
 
         try {
             if (clienteBase != null) {
-
+                clienteBase.setDni(clienteActualizado.getDni());
                 clienteBase.setNombre(clienteActualizado.getNombre());
                 clienteBase.setDireccion(clienteActualizado.getDireccion());
                 clienteBase.setDni(clienteActualizado.getDni());
                 clienteBase.setTelefono(clienteActualizado.getTelefono());
-                
-                return ResponseEntity.ok(clienteBase);
 
+                clienteService.actualizarCliente(clienteBase);
+
+                return ResponseEntity.ok(clienteBase);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe, primero debes crearlo.");
             }

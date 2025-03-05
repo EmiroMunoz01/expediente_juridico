@@ -5,5 +5,5 @@ export interface Cliente {
   nombre: string;
   direccion: string;
   telefono: number;
-  fecha_creacion: string;
+  fechaCreacion: string;
 }
