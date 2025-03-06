@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
-
 
 @Data
 @AllArgsConstructor
@@ -20,11 +21,14 @@ public class Asunto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long expediente;
 
-    @Column(name = "fecha_inicio")
-    private Date fechaInicio;
+    @Column(name = "fecha_creacion")
+    private LocalDate fechaCreacion;
 
     @Column(name = "fecha_finalizacion")
     private Date fechaFinalizacion;
+
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_asunto")

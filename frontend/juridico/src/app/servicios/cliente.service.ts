@@ -44,7 +44,7 @@ export class ClienteService {
 
   eliminar(dni: number) {
     return this.http.delete<void>(
-      `http://localhost:8080/juridico-app/clientes/eliminar-cliente/${dni}`
+      `http://localhost:8080/juridico-app/clientes/eliminar-cliente-por-dni/${dni}`
     );
   }
 }

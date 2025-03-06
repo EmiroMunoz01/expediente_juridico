@@ -36,9 +36,7 @@ public class ClienteController {
         return clienteService.listarClientes();
     }
 
-    // http://localhost:8080/juridico-app/clientes/buscar-por-dni
-
-    // metodo para filtrar un cliente por dni
+    // metodo para filtrar un cliente por id
     @GetMapping("/clientes/buscar-por-id/{id}")
     public Cliente buscarClientePorId(@PathVariable Long id) {
         return clienteService.buscarClientePorId(id);
