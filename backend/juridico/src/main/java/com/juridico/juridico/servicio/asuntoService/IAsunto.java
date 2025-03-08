@@ -6,14 +6,14 @@ import com.juridico.juridico.modelo.Asunto;
 
 public interface IAsunto {
 
-    public Asunto crearAsunto(Asunto asunto);
-
     public List<Asunto> listarAsuntos();
 
-    public Asunto buscarAsuntoPorId(Long idAsunto);
+    public Asunto crearAsunto(Asunto asunto);
 
-    public void eliminarAsuntoPorId(Long idAsunto);
+    public Asunto buscarAsuntoPorId(Long id);
 
-    public Asunto actualizarAsunto(Asunto asunto);
+    public void eliminarAsuntoPorId(Long id);
+
+    public Asunto actualizarAsunto(Long id,Asunto asunto);
 
 }

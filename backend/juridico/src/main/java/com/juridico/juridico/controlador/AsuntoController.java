@@ -3,8 +3,8 @@ package com.juridico.juridico.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,8 @@ import com.juridico.juridico.modelo.Asunto;
 import com.juridico.juridico.servicio.asuntoService.AsuntoService;
 
 @RestController
-@RequestMapping()
+@RequestMapping("juridico-app")
+@CrossOrigin(value = "http://localhost:4200")
 public class AsuntoController {
 
     @Autowired
@@ -35,54 +36,17 @@ public class AsuntoController {
         return asuntoService.buscarAsuntoPorId(id);
     }
 
-    // metodo para crear un asunto
-
-    @SuppressWarnings("null")
     @PostMapping("/asuntos/crear-asunto")
-    public ResponseEntity<?> crearAsunto(@RequestBody Asunto asunto) {
+    public Asunto crearAsunto(@RequestBody Asunto asunto) {
 
-        // el expediente es el equivalente al ID para nosotros
-        Asunto asuntoVerificar = asuntoService.buscarAsuntoPorId(asunto.getExpediente());
-
-        try {
-            if (asuntoVerificar != null) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("El cliente ya existe, la peticion es erronea.");
-            } else {
-                asuntoVerificar.setEstado(asunto.getEstado());
-                asuntoVerificar.setCliente(asunto.getCliente());
-                asuntoVerificar.setDescripcion(asunto.getDescripcion());
-                asuntoVerificar.setFechaCreacion(asunto.getFechaCreacion());
-                asuntoVerificar.setFechaFinalizacion(asunto.getFechaFinalizacion());
-                asuntoVerificar.setProcuradores(asunto.getProcuradores());
-                asuntoService.crearAsunto(asuntoVerificar);
-                return ResponseEntity.ok(asuntoVerificar);
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
-        }
+        return asuntoService.crearAsunto(asunto);
 
     }
 
-    @PutMapping("/asuntos/actualizar-asunto/{expediente}")
-    public ResponseEntity<?> actualizarAsunto(@PathVariable Long expediente, @RequestBody Asunto asuntoBase) {
+    @PutMapping("/asuntos/actualizar-asunto/{id}")
+    public Asunto actualizarAsunto(@PathVariable Long id, @RequestBody Asunto asuntoBase) {
 
-        Asunto asunto = asuntoService.buscarAsuntoPorId(asuntoBase.getExpediente());
-
-        try {
-            if (asunto != null) {
-                asunto.setDescripcion(asuntoBase.getDescripcion());
-                asuntoService.actualizarAsunto(asunto);
-                return ResponseEntity.ok(asunto);
-            } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("El cliente no existe, primero debes crearlo.");
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
-        }
+        return asuntoService.actualizarAsunto(id, asuntoBase);
 
     }
 }

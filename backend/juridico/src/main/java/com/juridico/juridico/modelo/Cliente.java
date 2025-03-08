@@ -1,12 +1,18 @@
 package com.juridico.juridico.modelo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -27,7 +33,7 @@ public class Cliente {
     private Long id;
 
     @Column(name = "dni", unique = true)
-    private Integer dni;
+    private Long dni;
 
     @NotNull
     @Column(name = "nombre")
@@ -42,5 +48,9 @@ public class Cliente {
     @NotNull
     @Column(name = "telefono", unique = true)
     private Integer telefono;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference("cliente-asuntos")
+    private List<Asunto> asuntos;
 
 }

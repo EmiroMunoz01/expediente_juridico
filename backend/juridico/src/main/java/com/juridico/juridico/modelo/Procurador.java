@@ -1,6 +1,10 @@
 package com.juridico.juridico.modelo;
 
+import java.time.LocalDateTime;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,10 +23,17 @@ public class Procurador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nombre")
     private String nombre;
-    private String telefono;
+
+    @Column(name = "telefono")
+    private Integer telefono;
+
+    @Column(name = "fecha_creacion")
+    private LocalDateTime fechaCreacion;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "procurador_asunto", joinColumns = @JoinColumn(name = "procurador_id"), inverseJoinColumns = @JoinColumn(name = "asunto_id"))
     private Set<Asunto> asuntos;
 }

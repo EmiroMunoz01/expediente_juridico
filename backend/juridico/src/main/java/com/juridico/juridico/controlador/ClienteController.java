@@ -1,9 +1,7 @@
 package com.juridico.juridico.controlador;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,34 +42,21 @@ public class ClienteController {
 
     // metodo para filtrar un cliente por dni
     @GetMapping("/clientes/buscar-por-dni/{dniCliente}")
-    public Cliente buscarClientePorDni(@PathVariable Integer dniCliente) {
+    public Cliente buscarClientePorDni(@PathVariable Long dniCliente) {
         return clienteService.buscarClientePorDni(dniCliente);
     }
 
     // metodo para crear un cliente
     @PostMapping("/clientes/crear-cliente")
-    public ResponseEntity<?> crearCliente(@RequestBody Cliente cliente) {
+    public Cliente crearCliente(@RequestBody Cliente cliente) {
 
-        Cliente clienteVerificacion = clienteService.buscarClientePorDni(cliente.getDni());
+        return clienteService.crearCliente(cliente);
 
-        try {
-            if (clienteVerificacion != null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("El cliente ya existe, la peticion es erronea.");
-            } else {
-                cliente.setFechaCreacion(LocalDateTime.now());
-                clienteService.crearCliente(cliente);
-                return ResponseEntity.ok(cliente);
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
-        }
     }
 
     // metodo para eliminar un cliente por dni
     @DeleteMapping("/clientes/eliminar-cliente-por-dni/{dni}")
-    public void eliminarClientePorDNI(@PathVariable Integer dni) {
+    public void eliminarClientePorDNI(@PathVariable Long dni) {
         clienteService.eliminarClientePorDni(dni);
     }
 
@@ -82,30 +67,10 @@ public class ClienteController {
 
     // metodo para actualizar un cliente por dni
     @PutMapping("/clientes/actualizar-cliente/{dni}")
-    public ResponseEntity<?> actualizarCliente(@PathVariable Integer dni,
+    public Cliente actualizarCliente(@PathVariable Long dni,
             @RequestBody Cliente clienteActualizado) {
 
-        Cliente clienteBase = clienteService.buscarClientePorDni(dni);
-
-        try {
-            if (clienteBase != null) {
-                clienteBase.setDni(clienteActualizado.getDni());
-                clienteBase.setNombre(clienteActualizado.getNombre());
-                clienteBase.setDireccion(clienteActualizado.getDireccion());
-                clienteBase.setDni(clienteActualizado.getDni());
-                clienteBase.setTelefono(clienteActualizado.getTelefono());
-
-                clienteService.actualizarCliente(clienteBase);
-
-                return ResponseEntity.ok(clienteBase);
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El cliente no existe, primero debes crearlo.");
-            }
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Error al momento de realizar la peticion, puede existir un valor duplicado.");
-        }
-
+        return clienteService.actualizarCliente(dni, clienteActualizado);
     }
+
 }

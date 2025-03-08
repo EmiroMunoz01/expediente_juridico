@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a978d46-2f3e-4656-8faf-cfc99a7e67a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/controlador/AsuntoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/controlador/AsuntoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/controlador/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/controlador/ClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Asunto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Asunto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/juridico/src/app/servicios/cliente.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/juridico/src/app/servicios/cliente.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Procurador.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/modelo/Procurador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/repositorio/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/repositorio/ClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/asuntoService/AsuntoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/asuntoService/AsuntoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/asuntoService/IAsunto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/asuntoService/IAsunto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/clienteService/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/clienteService/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/clienteService/ICliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/java/com/juridico/juridico/servicio/clienteService/ICliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/juridico/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/juridico/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,22 +22,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "EmiroMunoz01"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EmiroMunoz01&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/EmiroMunoz01/expediente_juridico.git",
-    "accountId": "789c078b-ea29-483c-81af-05cc13a381b9"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EmiroMunoz01/expediente_juridico.git&quot;,
+    &quot;accountId&quot;: &quot;789c078b-ea29-483c-81af-05cc13a381b9&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 4
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2tx7K2OnzVRFatoV68AFV9aUH0R" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,6 +49,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Jake/Documents/01-Archivos Emiro/Programacion/Springboot/expediente_juridico/backend/juridico",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -61,6 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1741281806324</updated>
       <workItem from="1741281807502" duration="68000" />
+      <workItem from="1741451532327" duration="58000" />
     </task>
     <servers />
   </component>

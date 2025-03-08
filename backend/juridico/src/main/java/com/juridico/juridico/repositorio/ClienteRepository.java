@@ -17,11 +17,11 @@ public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 
     @Modifying
     @Query("DELETE FROM Cliente c WHERE c.dni = :dni")
-    void deleteByDni(@Param("dni") Integer dni);
+    void deleteByDni(@Param("dni") Long dni);
 
     
     @Query("SELECT c FROM Cliente c WHERE c.dni = :dni")
-    Cliente findByDni(Integer dni);
+    Cliente findByDni(Long dni);
 
     
 }

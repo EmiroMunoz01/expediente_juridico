@@ -1,13 +1,26 @@
 package com.juridico.juridico.modelo;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Data
 @AllArgsConstructor
@@ -15,14 +28,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "asunto")
-public class Asunto {
+public class  Asunto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long expediente;
+    private Long id;
 
     @Column(name = "fecha_creacion")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @Column(name = "fecha_finalizacion")
     private Date fechaFinalizacion;
@@ -34,10 +47,15 @@ public class Asunto {
     @Column(name = "estado_asunto")
     private EstadoAsunto estado;
 
+
+
     @ManyToOne
     @JoinColumn(name = "cliente_dni", nullable = false)
+    @JsonBackReference("cliente-asuntos")
     private Cliente cliente;
 
+
     @ManyToMany(mappedBy = "asuntos")
+    @JsonIgnore
     private Set<Procurador> procuradores;
 }
