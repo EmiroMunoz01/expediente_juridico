@@ -15,7 +15,7 @@
 
         @if(form.get('dni')?.hasError('required')){
         <p class="invalid-feedback d-block">
-          El dni es obligatorio.
+          El DNI es obligatorio.
         </p>
 
         }
@@ -40,17 +40,34 @@
 
 
       <div class="mb-3">
-        <label for="telefono">Telefono</label>
+        <label for="nombre">Ubicación</label>
+        <input
+          id="ubicacion"
+          type="text"
+          placeholder="Ubicación"
+          class="form-control"
+          formControlName="ubicacion"
+        />
+        @if(form.get('ubicacion')?.hasError('required')){
+          <p class="invalid-feedback d-block">
+            La ubicación es obligatoria.
+          </p>
+
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="telefono">Teléfono</label>
         <input
           id="telefono"
           type="number"
-          placeholder="telefono"
+          placeholder="Teléfono"
           class="form-control"
           formControlName="telefono"
         />
         @if(form.get('telefono')?.hasError('required')){
         <p class="invalid-feedback d-block">
-          El telefono es obligatorio, minimo 6 digitos.
+          El teléfono es obligatorio.
         </p>
 
         }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,7 +29,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "asunto")
-public class  Asunto {
+public class Asunto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,15 +48,19 @@ public class  Asunto {
     @Column(name = "estado_asunto")
     private EstadoAsunto estado;
 
-
-
     @ManyToOne
     @JoinColumn(name = "cliente_dni", nullable = false)
     @JsonBackReference("cliente-asuntos")
     private Cliente cliente;
 
-
     @ManyToMany(mappedBy = "asuntos")
     @JsonIgnore
     private Set<Procurador> procuradores;
+
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id); // Usa solo el ID para evitar referencias circulares
+    }
 }

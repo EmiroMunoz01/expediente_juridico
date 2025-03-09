@@ -39,15 +39,16 @@ public class Cliente {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "direccion")
-    private String direccion;
+    @NotNull
+    @Column(name = "ubicacion")
+    private String ubicacion;
 
     @Column(name = "fecha_creacion")
     private LocalDateTime fechaCreacion;
 
     @NotNull
     @Column(name = "telefono", unique = true)
-    private Integer telefono;
+    private Long telefono;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference("cliente-asuntos")

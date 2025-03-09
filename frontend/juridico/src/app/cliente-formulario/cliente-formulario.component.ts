@@ -17,7 +17,7 @@ import { Cliente } from '../modelo/cliente.interface';
   styleUrl: './cliente-formulario.component.css',
 })
 export default class ClienteFormularioComponent implements OnInit {
-  
+
   private fb = inject(FormBuilder);
 
   private clienteServicio = inject(ClienteService);
@@ -41,6 +41,7 @@ export default class ClienteFormularioComponent implements OnInit {
             dni: [cliente.dni, [Validators.required]],
             nombre: [cliente.nombre, [Validators.required]],
             telefono: [cliente.telefono, [Validators.required]],
+            ubicacion:[cliente.ubicacion, [Validators.required]]
           });
 
         });
@@ -49,6 +50,7 @@ export default class ClienteFormularioComponent implements OnInit {
         dni: ['', [Validators.required]],
         nombre: ['', [Validators.required]],
         telefono: ['', [Validators.required]],
+        ubicacion: ['', [Validators.required]]
       });
     }
   }

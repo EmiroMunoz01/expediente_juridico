@@ -35,7 +35,7 @@ export class ClienteService {
   }
 
   actualizarCliente(dni: number, cliente: Cliente) {
-    console.log("llamando al metodo actualizar");
+
     return this.http.put<Cliente>(
       `http://localhost:8080/juridico-app/clientes/actualizar-cliente/${dni}`,
       cliente

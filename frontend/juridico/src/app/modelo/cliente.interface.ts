@@ -3,7 +3,7 @@
 export interface Cliente {
   dni: number;
   nombre: string;
-  direccion: string;
+  ubicacion: string;
   telefono: number;
   fechaCreacion: string;
 }

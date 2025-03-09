@@ -48,8 +48,8 @@ public class ClienteService implements ICliente {
     public void eliminarClientePorId(Long idCliente) {
         clienteRepository.deleteById(idCliente);
     }
-    
-    
+
+
     @Override
     public Cliente actualizarCliente(Long dni, Cliente cliente) {
         // Validar que el cliente proporcionado no sea nulo
@@ -62,8 +62,7 @@ public class ClienteService implements ICliente {
         if (clienteEnSQL != null) {
 
             clienteEnSQL.setNombre(cliente.getNombre());
-            clienteEnSQL.setDireccion(cliente.getDireccion());
-            
+            clienteEnSQL.setUbicacion(cliente.getUbicacion());
             clienteEnSQL.setTelefono(cliente.getTelefono());
 
             System.out.println("Cliente modificado por DNI");

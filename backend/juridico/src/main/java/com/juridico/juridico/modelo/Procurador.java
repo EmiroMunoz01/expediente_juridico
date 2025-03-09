@@ -1,6 +1,7 @@
 package com.juridico.juridico.modelo;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,4 +37,13 @@ public class Procurador {
     @JsonIgnore
     @JoinTable(name = "procurador_asunto", joinColumns = @JoinColumn(name = "procurador_id"), inverseJoinColumns = @JoinColumn(name = "asunto_id"))
     private Set<Asunto> asuntos;
+
+
+
+
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id); // Usa solo el ID para evitar la recursión infinita
+    }
 }

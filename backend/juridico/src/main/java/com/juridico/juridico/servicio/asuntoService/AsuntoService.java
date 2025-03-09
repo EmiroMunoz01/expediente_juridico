@@ -22,7 +22,6 @@ public class AsuntoService implements IAsunto {
     }
 
     @Override
-   
     public List<Asunto> listarAsuntos() {
         return (List<Asunto>) asuntoRepository.findAll();
     }
