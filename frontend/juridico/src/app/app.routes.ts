@@ -18,6 +18,6 @@ export const routes: Routes = [
     loadComponent: () => import('./cliente-formulario/cliente-formulario.component'),
   },{
     path: 'clientes/:dni/asuntos',
-    loadComponent: () => import('./cliente-formulario/cliente-formulario.component'),
+    loadComponent: () => import('./asuntos-del-cliente-listado/asuntos-del-cliente-listado.component'),
   },
 ];

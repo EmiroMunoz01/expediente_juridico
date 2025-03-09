@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Cliente } from '../modelo/cliente.interface';
+import { Asunto } from '../modelo/asunto.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -47,9 +48,9 @@ export class ClienteService {
   }
 
   listarAsuntosCliente(dni: number) {
-    return this.http.get<Cliente>(
+    return this.http.get<Asunto[]>(
       `http://localhost:8080/juridico-app/clientes/${dni}/asuntos`
     );
   }
-  
+
 }

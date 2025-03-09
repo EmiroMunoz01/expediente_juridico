@@ -6,4 +6,5 @@ export interface Asunto {
   estadoAsunto: string;
   fechaCreacion: number;
   clienteDni: number;
+  procurador : string;
 }
