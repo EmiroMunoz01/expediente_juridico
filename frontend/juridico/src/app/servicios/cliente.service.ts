@@ -5,7 +5,6 @@ import { Cliente } from '../modelo/cliente.interface';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ClienteService {
   private http = inject(HttpClient);
 
@@ -35,7 +34,6 @@ export class ClienteService {
   }
 
   actualizarCliente(dni: number, cliente: Cliente) {
-
     return this.http.put<Cliente>(
       `http://localhost:8080/juridico-app/clientes/actualizar-cliente/${dni}`,
       cliente
@@ -47,4 +45,11 @@ export class ClienteService {
       `http://localhost:8080/juridico-app/clientes/eliminar-cliente-por-dni/${dni}`
     );
   }
+
+  listarAsuntosCliente(dni: number) {
+    return this.http.get<Cliente>(
+      `http://localhost:8080/juridico-app/clientes/${dni}/asuntos`
+    );
+  }
+  
 }

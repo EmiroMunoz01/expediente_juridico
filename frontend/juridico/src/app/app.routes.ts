@@ -8,10 +8,6 @@ export const routes: Routes = [
   {
     path: 'clientes',
     loadComponent: () => import('./cliente-listado/cliente-listado.component'),
-  },{
-    
-    path: 'clientes-asuntos',
-    loadComponent: () => import('./cliente-asuntos-listado/cliente-asuntos-listado.component'),
   },
   {
     path: 'clientes/nuevo',
@@ -19,6 +15,9 @@ export const routes: Routes = [
   },
   {
     path: 'clientes/:dni/actualizar',
+    loadComponent: () => import('./cliente-formulario/cliente-formulario.component'),
+  },{
+    path: 'clientes/:dni/asuntos',
     loadComponent: () => import('./cliente-formulario/cliente-formulario.component'),
   },
 ];

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.juridico.juridico.modelo.Asunto;
 import com.juridico.juridico.modelo.Cliente;
 import com.juridico.juridico.repositorio.ClienteRepository;
 
@@ -24,7 +25,8 @@ public class ClienteService implements ICliente {
 
     @Override
     public Cliente buscarClientePorDni(Long dni) {
-        return clienteRepository.findByDni(dni);
+        return clienteRepository.findByDni(dni)
+                .orElseThrow(() -> new RuntimeException("⚠️ Error: Cliente con DNI " + dni + " no encontrado."));
     }
 
     @Override
@@ -49,31 +51,37 @@ public class ClienteService implements ICliente {
         clienteRepository.deleteById(idCliente);
     }
 
-
     @Override
     public Cliente actualizarCliente(Long dni, Cliente cliente) {
         // Validar que el cliente proporcionado no sea nulo
 
-        Cliente clienteEnSQL = clienteRepository.findByDni(dni);
-
-        System.out.println(clienteEnSQL);
-
-
-        if (clienteEnSQL != null) {
-
-            clienteEnSQL.setNombre(cliente.getNombre());
-            clienteEnSQL.setUbicacion(cliente.getUbicacion());
-            clienteEnSQL.setTelefono(cliente.getTelefono());
-
-            System.out.println("Cliente modificado por DNI");
-
-            return this.clienteRepository.save(clienteEnSQL);
-
-        } else {
-            System.out.println("no ha pasado nadota");
-            return null;
+        if (cliente == null) {
+            throw new IllegalArgumentException("El cliente no puede ser nulo");
         }
+
+        Cliente clienteEnSQL = clienteRepository.findByDni(dni)
+                .orElseThrow(() -> new RuntimeException("⚠️ Error: Cliente con DNI " + dni + " no encontrado."));
+
+        clienteEnSQL.setNombre(cliente.getNombre());
+        clienteEnSQL.setUbicacion(cliente.getUbicacion());
+        clienteEnSQL.setTelefono(cliente.getTelefono());
+
+        System.out.println("Cliente modificado por DNI");
+
+        return this.clienteRepository.save(clienteEnSQL);
 
     }
 
+    // obtenerAsuntosPorDni
+    public List<Asunto> obtenerAsuntosPorDni(Long dni) {
+        return clienteRepository.findByDni(dni)
+                .map(cliente -> {
+                    System.out.println("✅ Cliente encontrado: " + cliente.getNombre());
+                    return cliente.getAsuntos();
+                })
+                .orElseThrow(() -> {
+                    System.out.println("⚠️ Error: Cliente con DNI " + dni + " no encontrado.");
+                    return new RuntimeException("Cliente con DNI " + dni + " no encontrado.");
+                });
+    }
 }

@@ -30,6 +30,18 @@
       <th>{{ cliente.fechaCreacion | date : "dd/MM/yyyy hh:mm a" }}</th>
       <td>
         <div class="btn-group">
+
+
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/clientes', cliente.dni, 'asuntos']"
+          >
+            Ver Asuntos
+          </button>
+
+
+
+
           <button
             class="btn btn-warning"
             [routerLink]="[cliente.dni, 'actualizar']"

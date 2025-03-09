@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Cliente } from '../modelo/cliente.interface';
+import { DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ClienteService } from '../servicios/cliente.service';
 
 @Component({
   selector: 'app-asuntos-del-cliente-listado',
-  imports: [],
+  imports: [DatePipe, RouterModule],
   templateUrl: './asuntos-del-cliente-listado.component.html',
-  styleUrl: './asuntos-del-cliente-listado.component.css'
+  styleUrl: './asuntos-del-cliente-listado.component.css',
 })
-export class AsuntosDelClienteListadoComponent {
+export default class AsuntosDelClienteListadoComponent {
+
+
+    private clienteService = inject(ClienteService);
+
+    clientesArrayAsuntos: Cliente[] = [];
+
+
 
 }

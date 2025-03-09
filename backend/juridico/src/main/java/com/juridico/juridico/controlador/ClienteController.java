@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.juridico.juridico.modelo.Asunto;
 import com.juridico.juridico.modelo.Cliente;
 import com.juridico.juridico.servicio.clienteService.ClienteService;
 
@@ -73,4 +74,11 @@ public class ClienteController {
         return clienteService.actualizarCliente(dni, clienteActualizado);
     }
 
+    @GetMapping("/clientes/{dni}/asuntos")
+    public ResponseEntity<List<Asunto>> obtenerAsuntos(@PathVariable Long dni) {
+        List<Asunto> asuntos = clienteService.obtenerAsuntosPorDni(dni);
+        return ResponseEntity.ok(asuntos);
+    }
+
+    
 }

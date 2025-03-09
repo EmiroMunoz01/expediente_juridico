@@ -3,6 +3,8 @@ package com.juridico.juridico.repositorio;
 
 
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -21,7 +23,7 @@ public interface ClienteRepository extends CrudRepository<Cliente, Long> {
 
     
     @Query("SELECT c FROM Cliente c WHERE c.dni = :dni")
-    Cliente findByDni(Long dni);
+    Optional<Cliente> findByDni(Long dni);
 
     
 }
