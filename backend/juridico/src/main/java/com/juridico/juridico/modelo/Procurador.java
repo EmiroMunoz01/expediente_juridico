@@ -1,6 +1,7 @@
 package com.juridico.juridico.modelo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -37,7 +38,9 @@ public class Procurador {
     @JoinTable(name = "procurador_asunto", joinColumns = @JoinColumn(name = "procurador_id"), inverseJoinColumns = @JoinColumn(name = "asunto_id"))
     private Set<Asunto> asuntos;
 
-        @Override
+
+
+    @Override
     public int hashCode() {
         return Objects.hash(id); // Usa solo el ID para evitar la recursión infinita
     }

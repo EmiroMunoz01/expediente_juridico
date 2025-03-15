@@ -2,7 +2,10 @@ package com.juridico.juridico.controlador;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
+import com.juridico.juridico.modelo.Asunto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +42,11 @@ public class ProcuradorController {
         return procuradorService.buscarProcuradorPorId(id);
     }
 
+    @GetMapping("/procurador/{procuradorId}/asuntos")
+    public Set<Asunto> listarAsuntosPorProcurador(@PathVariable Long procuradorId) {
+       return procuradorService.listarAsuntosProcurador(procuradorId);
+    }
+
     @PostMapping("/procuradores/crear-procurador")
     public Procurador crearProcurador(@RequestBody Procurador procurador) {
         return procuradorService.crearProcurador(procurador);
@@ -52,16 +60,17 @@ public class ProcuradorController {
     // metodo para actualizar un procurador
     @PutMapping("/procuradores/actualizar-procurador/{id}")
     public Procurador actualizarProcurador(@PathVariable Long id,
-            @RequestBody Procurador procuradorActualizado) {
+                                           @RequestBody Procurador procuradorActualizado) {
 
         return procuradorService.actualizarProcurador(id, procuradorActualizado);
     }
 
-    @PostMapping("/procuradores/{procuradorId}/asignar/{asuntoId}")
+    //metodo para asignar un asunto al procurador
+    @PutMapping("/procuradores/{procuradorId}/asignar/{asuntoId}")
     public ResponseEntity<String> asignarProcuradorAAsunto(@PathVariable Long procuradorId,
-            @PathVariable Long asuntoId) {
+                                                           @PathVariable Long asuntoId) {
         procuradorService.asignarProcuradorAAsunto(procuradorId, asuntoId);
         return ResponseEntity.ok("Procurador asignado al asunto correctamente");
- 
+
     }
 }

@@ -2,6 +2,8 @@ package com.juridico.juridico.servicio.procuradorService;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
@@ -26,9 +28,16 @@ public class ProcuradorService implements IProcurador {
         return (List<Procurador>) procuradorRepository.findAll();
     }
 
+
+    public Set<Asunto> listarAsuntosProcurador(Long idProcurador) {
+        Procurador procurador = procuradorRepository.findById(idProcurador).orElseThrow(() -> new RuntimeException("Procurador no encontrado"));
+        return procurador.getAsuntos();
+    }
+
+
     @Override
-    public Procurador buscarProcuradorPorId(Long id) {
-        return procuradorRepository.findById(id).orElse(null);
+    public Procurador buscarProcuradorPorId(Long idProcurador) {
+        return procuradorRepository.findById(idProcurador).orElse(null);
     }
 
     @Override
@@ -71,4 +80,10 @@ public class ProcuradorService implements IProcurador {
         procuradorRepository.save(procurador);
         asuntoRepository.save(asunto);
     }
+
+    public void cambiarEstadoDelAsunto(Long procuradorId, Long asuntoId, String estado) {
+
+    }
+
+
 }

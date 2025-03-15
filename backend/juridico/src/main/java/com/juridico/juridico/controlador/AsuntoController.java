@@ -38,9 +38,7 @@ public class AsuntoController {
 
     @PostMapping("/asuntos/crear-asunto")
     public Asunto crearAsunto(@RequestBody Asunto asunto) {
-
         return asuntoService.crearAsunto(asunto);
-
     }
 
     @PutMapping("/asuntos/actualizar-asunto/{id}")
